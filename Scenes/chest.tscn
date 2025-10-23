@@ -1,0 +1,97 @@
+[gd_scene load_steps=10 format=3 uid="uid://ck2u38oiqq21s"]
+
+[ext_resource type="Script" uid="uid://d2wj3cowiqw33" path="res://Scripts/Chest/chest.gd" id="1_cjfl1"]
+[ext_resource type="Texture2D" uid="uid://b60j4s7kt6blw" path="res://Sprites/Chest/Chest_Sprite.png" id="1_lyb87"]
+[ext_resource type="Texture2D" uid="uid://cdiju5lqqb4e3" path="res://Sprites/Chest/InteractButton.png" id="3_bagqn"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lyb87"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_lyb87")
+}],
+"loop": true,
+"name": &"DefaultState",
+"speed": 1.0
+}]
+
+[sub_resource type="Animation" id="Animation_cjfl1"]
+resource_name = "Idle"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ChestSprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1.1892071, -1.8025018, -1.9318726),
+"update": 0,
+"values": [Vector2(8, 8), Vector2(8.5, 8.5), Vector2(8, 8)]
+}
+
+[sub_resource type="Animation" id="Animation_bagqn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ChestSprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(8, 8)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pmguq"]
+_data = {
+&"Idle": SubResource("Animation_cjfl1"),
+&"RESET": SubResource("Animation_bagqn")
+}
+
+[sub_resource type="SystemFont" id="SystemFont_pmguq"]
+subpixel_positioning = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_dq33m"]
+font = SubResource("SystemFont_pmguq")
+
+[node name="Chest" type="Node2D"]
+script = ExtResource("1_cjfl1")
+
+[node name="ChestSprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 5
+scale = Vector2(8, 8)
+sprite_frames = SubResource("SpriteFrames_lyb87")
+animation = &"DefaultState"
+offset = Vector2(3, -5)
+
+[node name="AnimationPlayerChest" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_pmguq")
+}
+
+[node name="Textbox" type="Sprite2D" parent="."]
+texture_filter = 3
+position = Vector2(-4, -106)
+scale = Vector2(6, 6)
+texture = ExtResource("3_bagqn")
+
+[node name="Text" type="Label" parent="Textbox"]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -22.833334
+offset_top = -28.166668
+offset_right = -9.666664
+offset_bottom = -5.166668
+text = "E"
+label_settings = SubResource("LabelSettings_dq33m")
+horizontal_alignment = 1
+vertical_alignment = 1

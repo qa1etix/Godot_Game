@@ -1,0 +1,113 @@
+[gd_scene load_steps=22 format=3 uid="uid://cxf5uhjuo52tt"]
+
+[ext_resource type="Script" uid="uid://dswu772sb3us7" path="res://Scripts/CharacterControls.gd" id="1_ushfy"]
+[ext_resource type="Texture2D" uid="uid://clx1asva853ub" path="res://Sprites/Character/Attack/Attack_1/Attack_0.png" id="2_et0tf"]
+[ext_resource type="Texture2D" uid="uid://ce7bqkxah7e4" path="res://Sprites/Character/Idle/Idle_0.png" id="2_reotu"]
+[ext_resource type="Texture2D" uid="uid://b7yc5yitp7o6j" path="res://Sprites/Character/Idle/Idle_1.png" id="3_a5ess"]
+[ext_resource type="Texture2D" uid="uid://ceprojr6hjw4" path="res://Sprites/Character/Attack/Attack_1/Attack_1.png" id="3_hgna0"]
+[ext_resource type="Texture2D" uid="uid://bu2yc26qseper" path="res://Sprites/Character/Attack/Attack_1/Attack_2.png" id="4_s7tkn"]
+[ext_resource type="Texture2D" uid="uid://dd5p6afw6qw1w" path="res://Sprites/Character/Idle/Idle_2.png" id="4_wbia7"]
+[ext_resource type="Texture2D" uid="uid://dkf2ev04hgyme" path="res://Sprites/Character/Idle/Idle_3.png" id="5_kq7hj"]
+[ext_resource type="Texture2D" uid="uid://vn244ahmhwy7" path="res://Sprites/Character/Attack/Attack_1/Attack_3.png" id="5_nw3qc"]
+[ext_resource type="Texture2D" uid="uid://i6kvfyjkm2qv" path="res://Sprites/Character/Idle/Idle_4.png" id="6_7iw6i"]
+[ext_resource type="Texture2D" uid="uid://dsg4c6nmebkwb" path="res://Sprites/Character/Idle/Idle_5.png" id="7_l1rcp"]
+[ext_resource type="Texture2D" uid="uid://cvs26fgop1dsg" path="res://Sprites/Character/Walk/Walk_0.png" id="8_mvyft"]
+[ext_resource type="Texture2D" uid="uid://cu2fo3irirw3f" path="res://Sprites/Character/Walk/Walk_1.png" id="9_dm6ib"]
+[ext_resource type="Texture2D" uid="uid://c5cv5ighi2188" path="res://Sprites/Character/Walk/Walk_2.png" id="10_q5mnj"]
+[ext_resource type="Texture2D" uid="uid://bb3868uv53qt7" path="res://Sprites/Character/Walk/Walk_3.png" id="11_w85my"]
+[ext_resource type="Texture2D" uid="uid://t70qqu84nxwf" path="res://Sprites/Character/Walk/Walk_4.png" id="12_et0tf"]
+[ext_resource type="Texture2D" uid="uid://bpdjciif1j6vm" path="res://Sprites/Character/Walk/Walk_5.png" id="13_hgna0"]
+[ext_resource type="Texture2D" uid="uid://ck0vcxdnkikea" path="res://Sprites/Character/Walk/Walk_6.png" id="14_s7tkn"]
+[ext_resource type="Texture2D" uid="uid://jfg2vpbq141h" path="res://Sprites/Character/Walk/Walk_7.png" id="15_nw3qc"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ushfy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_et0tf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hgna0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_s7tkn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_nw3qc")
+}],
+"loop": false,
+"name": &"Attack_1",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_reotu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_a5ess")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_wbia7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_kq7hj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_7iw6i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_l1rcp")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_mvyft")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_dm6ib")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_q5mnj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_w85my")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_et0tf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_hgna0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_s7tkn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_nw3qc")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_et0tf"]
+size = Vector2(92.25, 83)
+
+[node name="Character" type="Node2D"]
+script = ExtResource("1_ushfy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 5
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_ushfy")
+animation = &"Attack_1"
+
+[node name="PlayerHitbox" type="Area2D" parent="AnimatedSprite2D"]
+show_behind_parent = true
+
+[node name="Shape" type="CollisionShape2D" parent="AnimatedSprite2D/PlayerHitbox"]
+show_behind_parent = true
+position = Vector2(12.625, 0)
+shape = SubResource("RectangleShape2D_et0tf")
